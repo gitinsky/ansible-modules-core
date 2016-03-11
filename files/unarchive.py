@@ -278,7 +278,7 @@ def main():
             module.fail_json(msg="Source '%s' failed to transfer" % src)
         # If copy=false, and src= contains ://, try and download the file to a temp directory.
         elif '://' in src:
-            tempdir = os.path.dirname(__file__)
+            tempdir = os.path.dirname(os.path.realpath(__file__))
             package = os.path.join(tempdir, str(src.rsplit('/', 1)[1]))
             try:
                 rsp, info = fetch_url(module, src)
